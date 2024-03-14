@@ -1,0 +1,7 @@
+{
+    "vue.server.petiteVue.supportHtmlFile": true,
+    "workbench.settings.useSplitJSON": true,
+    "vue.server.path": "",
+    "json.schemaDownload.enable": true,
+    "json.format.enable": true
+}
