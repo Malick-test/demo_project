@@ -24,6 +24,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 6px;
+}
+.el-container.is-vertical {
+  height: 100vh;
+}
+.el-footer {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #dddddd;
 }
 </style>

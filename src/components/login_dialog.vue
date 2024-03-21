@@ -24,27 +24,29 @@
 <script setup>
 import { ref, reactive } from "vue"
 import { login_user_info } from '../api/mock'
-import { FormInstance, FormRules, ElMessage } from 'element-plus'
-
+import { ElMessage } from 'element-plus'
+import { useStore } from 'vuex'
+// 开启弹窗
   const is_open = ref(true)
-  const formLabelWidth = ref('100')
+  //输入框宽度
+  const formLabelWidth = ref('70')
+  // 表单数据
     const form = reactive({
       name: '',
       password: ''
     })
+    // 是否开启输入用户名开启提示
     const form_name = ref(false)
+    // 是否开启输入用户密码开启提示
     const form_password = ref(false)
+    // 用户名或密码错误提示
     const message_error = ref('')
-    const props = defineProps({
-      close_login_modal: {
-        type: Function,
-        default: () => {}
-      }
-    })
+    // store
+    const store = useStore()
     // 关闭弹窗
     const cancel = () => {
       console.error('取消');
-      props.close_login_modal()
+      store.dispatch('login/changeloginAction', false)
     }
     const submit = () => {
       if (!form.name) {
@@ -56,7 +58,6 @@ import { FormInstance, FormRules, ElMessage } from 'element-plus'
         form_password.value = true
         return
       }
-      console.error(login_user_info);
       if (form.name != login_user_info.user_info_obj.admin.user) {
         message_error.value = ('用户名不存在，请输入正确用户名')
         return
@@ -65,7 +66,7 @@ import { FormInstance, FormRules, ElMessage } from 'element-plus'
         message_error.value = ('用户密码错误，请输入正确密码')
         return
       }
-      props.close_login_modal()
+      store.dispatch('login/changeloginAction', false)
       message_error.value = ''
 
     }
