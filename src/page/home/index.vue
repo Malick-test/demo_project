@@ -1,33 +1,8 @@
 <template>
-    <el-container>
-      <el-header>
-         <!-- 头部搜索 -->
-        <el-input
-            v-model="input1"
-            size="large"
-            placeholder="输入搜索内容"
-            :prefix-icon="Search"
-        >
-        <!-- 图片搜索 -->
-            <template #append>
-                <el-button :icon="CameraFilled" />
-            </template>
-        </el-input>
-        <!-- <el-button @click="loginFun" type="primary" :icon="Avatar" /> -->
-        <el-avatar @click="loginFun" :icon="UserFilled" />
-      </el-header>
-      <el-main>
-        <!-- tabList -->
-        <tab :activeName="active_name" :dataList="tablist" :onClick="change_tab">
-            <div>{{'solt' + tab_pane}}</div>
-        </tab>
-      </el-main>
-      <el-footer>
-          <footerPage></footerPage>
-      </el-footer>
-</el-container>
-<loginDialog v-if='store.state.login.is_login'></loginDialog>
-    
+    <!-- tabList -->
+    <tab :activeName="active_name" :dataList="tablist" :onClick="change_tab">
+        <div>{{'solt' + tab_pane}}</div>
+    </tab>
 </template>
 
 <script setup>
@@ -35,19 +10,13 @@ import { onMounted, ref } from 'vue'
 import { Search,CameraFilled, UserFilled, Avatar } from '@element-plus/icons-vue'
 import { home_page } from '../../api/mock'
 import tab from "../../components/tab.vue"
-import loginDialog from "../../components/login_dialog.vue"
-import footerPage from "../footer/index.vue"
 import { useStore } from "vuex"
-// 搜索框输入的值
-const input1 = ref('')
 // tab的数据
 const tablist = ref([])
 // 选择的tab
 const active_name = ref('tuijian')
 
 const tab_pane = ref('')
-// 是否开启登陆弹窗
-const is_modal = ref(false)
 const store = useStore()
 
 onMounted(() => {
@@ -63,12 +32,7 @@ const home_page_data = () => {
 const change_tab = (tab, event) => {
     tab_pane.value = tab.props.label
 }
-// 登陆事件
-const loginFun = () => {
-    // 打开登陆弹窗
-    is_modal.value = true
-    store.dispatch('login/changeloginAction', true)
-}
+
 
 </script>
 

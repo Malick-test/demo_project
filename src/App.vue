@@ -7,12 +7,16 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import layoutPage from "./layout/index.vue"
+import { useStore } from "vuex"
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
     layoutPage,
+  },
+  created() {
+    console.error('this.$store.$store', useStore());
   }
 }
 </script>

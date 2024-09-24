@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import Vuex from "vuex";
 import App from './App.vue'
 // 路由对象
 import router  from "./router/router.js"
@@ -9,4 +10,4 @@ import 'element-plus/theme-chalk/index.css';
 import './api/mock'
 import 'amfe-flexible'
 // Vue.use(ElementUI)
-createApp(App).use(ElementPlus).use(router).use(store).mount('#app')
+createApp(App).use(ElementPlus).use(Vuex).use(router).use(store).mount('#app')

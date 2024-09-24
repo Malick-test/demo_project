@@ -66,7 +66,8 @@ import { useStore } from 'vuex'
         message_error.value = ('用户密码错误，请输入正确密码')
         return
       }
-      store.dispatch('login/changeloginAction', false)
+      store.dispatch('login/changeloginAction', true)
+      console.error('store', store);
       message_error.value = ''
 
     }
